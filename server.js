@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var routes = require('./config/routes');
-
+var cors = require('cors');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/json' }));
@@ -11,13 +11,7 @@ var port = process.env.PORT || 3011;
 
 var router = express.Router();
 
-router.use(function(req, res, next){
-    // allow cors
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  
-    next(); //Middleware stuff here
-});
+app.use(cors());
 
 router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });   
