@@ -12,6 +12,10 @@ var port = process.env.PORT || 3011;
 var router = express.Router();
 
 router.use(function(req, res, next){
+    // allow cors
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  
     next(); //Middleware stuff here
 });
 
